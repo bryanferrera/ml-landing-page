@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/ML-Project.html/pages/M%26L-Landing-Page.html" }
+  ]
+}
