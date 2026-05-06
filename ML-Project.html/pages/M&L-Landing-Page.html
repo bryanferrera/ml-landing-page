@@ -23,17 +23,20 @@
     --c-text-subdued: #5b666f;
     --c-white: #ffffff;
     --c-btn: #d97757;
-    --c-btn-hover: #c46545;
-    --c-btn-secondary: #e6e8e9;
+    --c-btn-hover: #d78061;
     --c-border: #e6e8e9;
     --c-accent: #004250;
     --shadow-card: 0px 17px 37px rgba(41,42,45,0.02), 0px 67px 67px rgba(41,42,45,0.02), 0px 150px 90px rgba(41,42,45,0.01), 0px 267px 107px rgba(41,42,45,0);
     --font-serif: 'Cormorant Garamond', Georgia, serif;
     --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
-    --radius-card: 14px;
-    --radius-btn: 300px;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-pill: 9999px;
     --max-w: 1280px;
     --pad-h: 40px;
+    --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur-btn: 0.45s;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -92,18 +95,54 @@
     font-size: 14px;
     color: var(--c-text-secondary);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color var(--dur-btn) var(--ease-organic);
   }
-  .nav-links a:hover { color: var(--c-text); }
+  .nav-links a:not(.nav-cta) {
+    position: relative;
+  }
+  .nav-links a:not(.nav-cta)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1.5px;
+    background: var(--c-btn);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--dur-btn) var(--ease-organic);
+  }
+  .nav-links a:not(.nav-cta):hover { color: var(--c-btn); }
+  .nav-links a:not(.nav-cta):hover::after { transform: scaleX(1); }
   .nav-cta {
+    display: inline-flex;
+    align-items: center;
     background: var(--c-btn);
     color: var(--c-white) !important;
     padding: 8px 20px;
-    border-radius: var(--radius-btn);
+    border-radius: var(--radius-pill);
     font-size: 14px !important;
-    transition: background 0.2s !important;
+    line-height: 1;
+    transition: background var(--dur-btn) var(--ease-organic) !important;
   }
   .nav-cta:hover { background: var(--c-btn-hover) !important; color: var(--c-white) !important; }
+  .nav-cta::after {
+    content: '→';
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    font-size: 1.25em;
+    max-width: 0;
+    margin-left: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-width var(--dur-btn) var(--ease-organic), margin-left var(--dur-btn) var(--ease-organic), opacity var(--dur-btn) var(--ease-organic);
+  }
+  .nav-cta:hover::after {
+    max-width: 1.5em;
+    margin-left: 6px;
+    opacity: 1;
+  }
   .nav-mobile-btn {
     display: none;
     background: none;
@@ -123,20 +162,44 @@
     font-family: var(--font-sans);
     font-size: 16px;
     font-weight: 400;
-    border-radius: var(--radius-btn);
+    line-height: 1;
+    border-radius: var(--radius-pill);
     padding: 10px 24px;
     height: 44px;
     text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
+    transition: background var(--dur-btn) var(--ease-organic), transform var(--dur-btn) var(--ease-organic);
     letter-spacing: -0.2px;
   }
   .btn-primary { background: var(--c-btn); color: var(--c-white); }
   .btn-primary:hover { background: var(--c-btn-hover); transform: translateY(-1px); }
-  .btn-secondary { background: var(--c-btn-secondary); color: var(--c-text); }
-  .btn-secondary:hover { background: #d8dadb; }
-  .btn-ghost { background: var(--c-white); color: var(--c-text); }
-  .btn-ghost:hover { background: #f0eeeb; }
+  .btn-primary::after {
+    content: '→';
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    font-size: 1.25em;
+    max-width: 0;
+    margin-left: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-width var(--dur-btn) var(--ease-organic), margin-left var(--dur-btn) var(--ease-organic), opacity var(--dur-btn) var(--ease-organic);
+  }
+  .btn-primary:hover::after {
+    max-width: 1.5em;
+    margin-left: 8px;
+    opacity: 1;
+  }
   .btn-sm { font-size: 14px; height: 36px; padding: 8px 18px; }
+
+  /* ─── LOCATION PILL ─── */
+  .location-pill {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.15);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    color: #A6A09B;
+  }
 
   /* ─── SCROLL ANIMATION ─── */
   .reveal {
@@ -170,8 +233,6 @@
   .delay-2 { transition-delay: 0.2s; }
   .delay-3 { transition-delay: 0.3s; }
   .delay-4 { transition-delay: 0.4s; }
-  .delay-5 { transition-delay: 0.5s; }
-  .delay-6 { transition-delay: 0.6s; }
 
   /* ─── SECTION HEADINGS ─── */
   .section-eyebrow {
@@ -191,16 +252,33 @@
     color: var(--c-text);
     margin-bottom: 24px;
   }
-  .section-title em {
+  @keyframes title-em-shine {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+  .section-title em,
+  .problem-card-headline em,
+  .outcome-headline em,
+  .objection-bold em {
     font-style: italic;
-    color: var(--c-text-secondary);
+    display: inline-block;
+    padding: 0 0.12em;
+    margin: 0 -0.12em;
+    background: linear-gradient(
+      90deg,
+      #C2AB8E 0%,
+      #C2AB8E 42%,
+      #F0DDC2 50%,
+      #C2AB8E 58%,
+      #C2AB8E 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: title-em-shine 7s linear infinite;
   }
-  .section-body {
-    font-size: 18px;
-    line-height: 28px;
-    color: var(--c-text);
-  }
-
   /* ─── ICON CIRCLE ─── */
   .icon-circle {
     width: 40px;
@@ -222,18 +300,10 @@
     stroke-linejoin: round;
   }
 
-  /* ─── CARDS ─── */
-  .card {
-    background: var(--c-white);
-    border-radius: var(--radius-card);
-    padding: 32px;
-    box-shadow: var(--shadow-card);
-  }
-
   /* ─── PLACEHOLDER IMAGE ─── */
   .img-placeholder {
     width: 100%;
-    border-radius: var(--radius-card);
+    border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
     background: #e8e4de;
@@ -275,7 +345,7 @@
   ═══════════════════════════════════════ */
   #hero {
     position: relative;
-    background-image: url('hero-bg.jpg');
+    background-image: url('../hero-bg.jpg');
     background-size: cover;
     background-position: 60% center;
     background-repeat: no-repeat;
@@ -295,21 +365,20 @@
     display: flex;
     justify-content: flex-start;
   }
-  .hero-text { max-width: 600px; }
-  .hero-image { display: none; }
+  .hero-text { max-width: 760px; }
 
   .hero-eyebrow {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.75);
     margin-bottom: 24px;
   }
   .hero-headline {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 48px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 54px;
     letter-spacing: -1.76px;
     color: #ffffff;
@@ -317,7 +386,23 @@
   }
   .hero-headline em {
     font-style: italic;
-    color: #eeece3;
+    display: inline-block;
+    padding: 0 0.12em;
+    margin: 0 -0.12em;
+    background: linear-gradient(
+      90deg,
+      #cfc6b0 0%,
+      #cfc6b0 35%,
+      #ffffff 50%,
+      #cfc6b0 65%,
+      #cfc6b0 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: title-em-shine 7s linear infinite;
   }
   .hero-subheadline {
     font-size: 18px;
@@ -394,7 +479,7 @@
     color: var(--c-text);
     background: var(--c-bg-alt);
     border: 1px solid var(--c-border);
-    border-radius: var(--radius-btn);
+    border-radius: var(--radius-md);
     padding: 0 18px;
     height: 44px;
     outline: none;
@@ -434,7 +519,7 @@
     width: 100%;
     aspect-ratio: 4 / 5;
     min-height: 600px;
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     overflow: hidden;
     background: #d9d4ca;
   }
@@ -456,7 +541,7 @@
   }
   .problem-card-block {
     background: var(--c-white);
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     padding: 40px;
     box-shadow: var(--shadow-card);
   }
@@ -468,17 +553,13 @@
     margin-bottom: 16px;
   }
   .problem-card-headline {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 32px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 42px;
     color: var(--c-text);
     margin-bottom: 24px;
-    letter-spacing: -0.5px;
-  }
-  .problem-card-headline em {
-    font-style: italic;
-    color: var(--c-text-secondary);
+    letter-spacing: -1.28px;
   }
   .problem-body p {
     font-size: 18px;
@@ -555,11 +636,18 @@
   }
   .service-pill {
     background: var(--c-bg-alt);
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     padding: 10px 14px;
     font-size: 14px;
     color: var(--c-text);
     line-height: 22px;
+    cursor: default;
+    transition: background var(--dur-btn) var(--ease-organic), transform var(--dur-btn) var(--ease-organic), box-shadow var(--dur-btn) var(--ease-organic);
+  }
+  .service-pill:hover {
+    background: var(--c-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(41,42,45,0.06);
   }
 
   /* ═══════════════════════════════════════
@@ -580,7 +668,7 @@
     width: 100%;
     aspect-ratio: 4 / 5;
     min-height: 600px;
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     overflow: hidden;
     background: #d9d4ca;
   }
@@ -600,7 +688,7 @@
   }
   .outcome-card-block {
     background: var(--c-white);
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     padding: 40px;
     box-shadow: var(--shadow-card);
   }
@@ -612,17 +700,13 @@
     margin-bottom: 16px;
   }
   .outcome-card-block .outcome-headline {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 32px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 42px;
     color: var(--c-text);
     margin-bottom: 24px;
-    letter-spacing: -0.5px;
-  }
-  .outcome-card-block .outcome-headline em {
-    font-style: italic;
-    color: var(--c-text-secondary);
+    letter-spacing: -1.28px;
   }
   .outcome-body p {
     font-size: 18px;
@@ -717,7 +801,7 @@
   }
   .service-card {
     background: var(--c-white);
-    border-radius: var(--radius-card);
+    border-radius: var(--radius-md);
     padding: 28px;
     box-shadow: var(--shadow-card);
     display: flex;
@@ -745,7 +829,7 @@
      SECTION 8: OBJECTION
   ═══════════════════════════════════════ */
   #objection {
-    background: var(--c-white);
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-alt) 100%);
     padding: 160px 0;
   }
   .objection-inner {
@@ -755,7 +839,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 80px;
+    gap: 64px;
+    background: var(--c-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 96px 64px;
   }
   .objection-header {
     display: flex;
@@ -771,7 +859,7 @@
   }
   .objection-header .section-title em {
     font-style: italic;
-    background-image: linear-gradient(to right, #D97757, #90728e, #ff9c7c, #D97757);
+    background-image: linear-gradient(to right, var(--c-btn), #90728e, #ff9c7c, var(--c-btn));
     background-size: 300% 100%;
     background-repeat: repeat;
     -webkit-background-clip: text;
@@ -805,10 +893,10 @@
     text-align: left;
     max-width: 480px;
     width: 100%;
-    padding: 40px 48px;
-    background: var(--c-white);
-    border-radius: 14px;
-    box-shadow: var(--shadow-card);
+    padding: 32px 40px;
+    background: transparent;
+    border: 1px solid var(--c-bg-alt);
+    border-radius: var(--radius-md);
   }
   .objection-bullets li {
     font-size: 17px;
@@ -835,29 +923,18 @@
     letter-spacing: -0.3px;
     max-width: 640px;
   }
-  .objection-bold em {
-    font-style: italic;
-    color: var(--c-text-secondary);
-  }
   .objection-cta {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
   }
-  .objection-cta .btn {
-    background: var(--c-text);
-    color: var(--c-white);
-  }
-  .objection-cta .btn:hover {
-    background: #000;
-  }
 
   @media (max-width: 768px) {
-    .objection-inner { gap: 56px; }
+    .objection-inner { gap: 48px; padding: 64px 28px; }
     .objection-bold { font-size: 22px; line-height: 32px; }
     .objection-body p { font-size: 18px; line-height: 28px; }
-    .objection-bullets { padding: 32px; }
+    .objection-bullets { padding: 28px 24px; }
   }
 
   /* ═══════════════════════════════════════
@@ -875,7 +952,7 @@
   }
   .testimonial-card {
     background: linear-gradient(180deg, #f9f8f7 0%, #f4f2f7 100%);
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -921,9 +998,9 @@
     gap: 16px;
   }
   .process-step-number {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: 48px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--c-border);
     line-height: 1;
     letter-spacing: -2px;
@@ -939,9 +1016,6 @@
     line-height: 24px;
     color: var(--c-text-secondary);
   }
-  .process-divider {
-    display: none;
-  }
 
   /* ═══════════════════════════════════════
      SECTION 11: LOCAL
@@ -955,6 +1029,13 @@
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
+  }
+  .local-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    display: block;
   }
 
   /* ═══════════════════════════════════════
@@ -1040,7 +1121,7 @@
   }
   .cta-form {
     background: var(--c-white);
-    border-radius: var(--radius-card);
+    border-radius: var(--radius-md);
     padding: 40px;
     box-shadow: var(--shadow-card);
     display: flex;
@@ -1063,7 +1144,7 @@
     color: var(--c-text);
     background: var(--c-bg);
     border: 1px solid var(--c-border);
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     padding: 12px 16px;
     width: 100%;
     outline: none;
@@ -1213,7 +1294,7 @@
       <li><a href="#process">How It Works</a></li>
       <li><a href="#testimonials">Testimonials</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="#cta-final" class="nav-cta" style="color: rgb(215, 128, 97)">Book Consultation</a></li>
+      <li><a href="#cta-final" class="nav-cta">Book Consultation</a></li>
     </ul>
     <button class="nav-mobile-btn" onclick="toggleMobileMenu()" aria-label="Menu">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
@@ -1232,7 +1313,7 @@
       <div class="hero-text">
         <p class="hero-eyebrow reveal">For Adult Children Of Aging Parents In Los Angeles &amp; San Fernando Valley</p>
         <h1 class="hero-headline reveal delay-1">
-          Help Your Parent Stay Safe At Home <em>Without Doing Everything On Your Own</em>
+          Help Your Parent Stay Safe At Home<br/><em>Without Doing Everything<br/>On Your Own</em>
         </h1>
         <p class="hero-subheadline reveal delay-2">
           Get trusted in-home care so your loved one stays comfortable and independent, while you finally get real support and peace of mind.
@@ -1243,7 +1324,7 @@
           <li>Serving Los Angeles &amp; San Fernando Valley</li>
         </ul>
         <div class="reveal delay-4">
-          <a href="#cta-final" class="btn btn-primary" style="background-color: rgb(215, 128, 97); color: rgb(255, 255, 255)">Book Your Free Care Consultation</a>
+          <a href="#cta-final" class="btn btn-primary">Book Your Free Care Consultation</a>
         </div>
       </div>
     </div>
@@ -1259,8 +1340,8 @@
         <p class="trust-cta-desc">Trusted support for families who need real help at home. Leave your details and we'll call you back.</p>
       </div>
       <form class="trust-cta-form" onsubmit="handleTrustFormSubmit(event)">
-        <input class="trust-cta-input" id="tc-name" type="text" placeholder="Your name" required style="border-radius: 14px" />
-        <input class="trust-cta-input" id="tc-phone" type="tel" placeholder="Phone number" required style="border-radius: 14px" />
+        <input class="trust-cta-input" id="tc-name" type="text" placeholder="Your name" required />
+        <input class="trust-cta-input" id="tc-phone" type="tel" placeholder="Phone number" required />
         <button type="submit" class="btn btn-primary trust-cta-btn">Get a Free Call Back</button>
       </form>
     </div>
@@ -1317,10 +1398,10 @@
 
       <!-- Right: Carousel -->
       <div class="problem-carousel reveal-right">
-        <img class="problem-carousel-img active" src="carousel-1.webp" alt="Caregiver helping senior woman stand up" />
-        <img class="problem-carousel-img" src="carousel-2.webp" alt="Compassionate care for elderly patient" />
-        <img class="problem-carousel-img" src="carousel-3.webp" alt="Nurse caring for senior patient" />
-        <img class="problem-carousel-img" src="carousel-4.webp" alt="Caregiver providing comfort to senior patient" />
+        <img class="problem-carousel-img active" src="../images/carousel-1.webp" alt="Caregiver helping senior woman stand up" />
+        <img class="problem-carousel-img" src="../images/carousel-2.webp" alt="Compassionate care for elderly patient" />
+        <img class="problem-carousel-img" src="../images/carousel-3.webp" alt="Nurse caring for senior patient" />
+        <img class="problem-carousel-img" src="../images/carousel-4.webp" alt="Caregiver providing comfort to senior patient" />
       </div>
     </div>
   </div>
@@ -1540,7 +1621,7 @@
 <!-- ─── SECTION 8: OBJECTION ─── -->
 <section id="objection">
   <div class="container">
-    <div class="objection-inner reveal" style="padding: 64px 0px; border-radius: 0px; border-width: 0px; border-style: solid; border-color: rgb(236, 233, 228)">
+    <div class="objection-inner reveal">
       <div class="objection-header">
         <p class="section-eyebrow">Still Wondering</p>
         <h2 class="section-title">Not Sure If <em>It's Time Yet?</em></h2>
@@ -1636,23 +1717,16 @@
           We serve families across Los Angeles and the San Fernando Valley, helping your loved one stay safe at home.
         </p>
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
-          <span style="background:var(--c-white); border-radius:14px; padding:7px 16px; font-size:13px; color:var(--c-text);">Los Angeles</span>
-          <span style="background:var(--c-white); border-radius:14px; padding:7px 16px; font-size:13px; color:var(--c-text);">San Fernando Valley</span>
-          <span style="background:var(--c-white); border-radius:14px; padding:7px 16px; font-size:13px; color:var(--c-text);">Burbank</span>
-          <span style="background:var(--c-white); border-radius:14px; padding:7px 16px; font-size:13px; color:var(--c-text);">Glendale</span>
-          <span style="background:var(--c-white); border-radius:14px; padding:7px 16px; font-size:13px; color:var(--c-text);">Pasadena</span>
-          <span style="background:var(--c-white); border-radius:14px; padding:7px 16px; font-size:13px; color:var(--c-text);">Encino</span>
+          <span class="location-pill">Los Angeles</span>
+          <span class="location-pill">San Fernando Valley</span>
+          <span class="location-pill">Burbank</span>
+          <span class="location-pill">Glendale</span>
+          <span class="location-pill">Pasadena</span>
+          <span class="location-pill">Encino</span>
         </div>
       </div>
       <div class="reveal-right delay-2">
-        <div class="img-placeholder" style="aspect-ratio:4/3; border-radius:var(--radius-card);">
-          <div class="img-placeholder-stripes"></div>
-          <div class="img-placeholder-inner">
-            <div class="img-placeholder-label">
-              service area map<br/>Los Angeles &amp; San Fernando Valley
-            </div>
-          </div>
-        </div>
+        <img class="local-image" src="../images/service-area.webp" alt="Caregiver in blue uniform talking with senior woman in her home" />
       </div>
     </div>
   </div>
@@ -1669,7 +1743,7 @@
           Still have questions? Book a free consultation and we'll walk you through everything.
         </p>
         <div style="margin-top:32px;">
-          <a href="#cta-final" class="btn btn-secondary btn-sm" style="background-color: rgb(217, 119, 87); color: rgb(255, 255, 255)">Talk to a Specialist</a>
+          <a href="#cta-final" class="btn btn-primary btn-sm">Talk to a Specialist</a>
         </div>
       </div>
       <div class="faq-list reveal-right delay-2">
@@ -1761,7 +1835,7 @@
             <label class="form-label" for="f-message">Your situation (optional)</label>
             <textarea class="form-input form-textarea" id="f-message" placeholder="Tell us a bit about your situation (optional)"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" style="width:100%; height:48px; font-size:15px;">
+          <button type="submit" class="btn btn-primary" style="width:100%;">
             Book My Free Consultation
           </button>
           <p class="form-microcopy">No pressure. No obligation. Just a clear next step.</p>
@@ -1815,7 +1889,7 @@
         <a href="tel:+12135550000">(213) 555-0000</a>
         <a href="/cdn-cgi/l/email-protection#0d65686161624d606c6369616e6c7f68236e6260"><span class="__cf_email__" data-cfemail="ef878a838380af828e818b838c8e9d8ac18c8082">[email&#160;protected]</span></a>
         <div style="margin-top:16px;">
-          <a href="#cta-final" style="display:inline-flex; align-items:center; justify-content:center; background:white; color:#292a2d; border-radius:300px; padding:8px 20px; font-size:13px; text-decoration:none; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+          <a href="#cta-final" class="btn btn-primary btn-sm">
             Book Free Consultation
           </a>
         </div>
@@ -1929,7 +2003,7 @@
 </script>
 
 <!-- ─── TWEAKS ─── -->
-<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="../components/tweaks-panel.jsx"></script>
 <script type="text/babel">
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accentColor": "#d97757",
