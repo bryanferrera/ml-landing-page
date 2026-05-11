@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Family Care Report — When It's No Longer Safe for a Parent to Live Alone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfbf9;
+    --bg-alt: #ece9e4;
+    --text: #292a2d;
+    --muted: #73726c;
+    --subdued: #5b666f;
+    --border: #e6e8e9;
+    --white: #ffffff;
+    --orange: #d97757;
+    --orange-soft: #fbece5;
+    --green: #6e8e63;
+    --green-soft: #eef2ea;
+    --yellow: #c69b4a;
+    --yellow-soft: #f7efde;
+    --red: #b1543d;
+    --red-soft: #f6e6e0;
+    --shadow:
+      0 17px 37px rgba(41,42,45,0.02),
+      0 67px 67px rgba(41,42,45,0.02),
+      0 150px 90px rgba(41,42,45,0.01);
+
+    --body-font: 'Matter', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --display-font: 'Reckless', 'Cormorant Garamond', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  /* Browser preview: pages floating on a soft backdrop */
+  body {
+    background: #d9d4ca;
+    padding: 56px 0;
+  }
+
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 24px auto;
+    padding: 0.75in;
+    background: var(--bg);
+    box-shadow:
+      0 17px 37px rgba(41,42,45,0.04),
+      0 67px 67px rgba(41,42,45,0.04),
+      0 150px 90px rgba(41,42,45,0.02);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Page header / footer */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+  .page-header .mark {
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.18em;
+  }
+  .page-header .section-tag {
+    color: var(--orange);
+    font-weight: 500;
+  }
+
+  .page-footer {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .page-footer .footer-mark { font-weight: 500; color: var(--text); letter-spacing: 0.18em; }
+
+  /* Typography */
+  h1, h2, h3, h4 {
+    margin: 0;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  h2.section-title {
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: var(--orange);
+    font-weight: 400;
+    margin-bottom: 32px;
+    max-width: 6.2in;
+  }
+  h2.section-title em {
+    font-style: italic;
+    color: var(--muted);
+    font-family: var(--display-font);
+    font-weight: 400;
+  }
+
+  h3.subhead {
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: var(--text);
+    margin: 36px 0 14px;
+    letter-spacing: -0.2px;
+  }
+
+  h4.minor {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    margin: 28px 0 8px;
+    letter-spacing: -0.1px;
+  }
+
+  p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text);
+    margin: 0 0 14px;
+  }
+
+  p.lead {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  p.muted {
+    color: var(--muted);
+  }
+
+  ul, ol {
+    margin: 8px 0 18px;
+    padding-left: 22px;
+  }
+  ul li, ol li {
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  ul li::marker { color: var(--orange); }
+
+  em.accent {
+    font-style: italic;
+    color: var(--muted);
+    font-family: var(--display-font);
+    font-size: 1.05em;
+  }
+
+  .rule {
+    height: 1px;
+    background: var(--border);
+    margin: 28px 0;
+    border: 0;
+  }
+
+  /* Cover */
+  .cover {
+    background: linear-gradient(256.23deg, #d9d4ca 0%, #eeece3 100%);
+    padding: 0.85in 0.85in 0.75in;
+  }
+  .cover .page-header { border-color: rgba(41,42,45,0.12); }
+  .cover .cover-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cover .cover-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-family: var(--display-font);
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 1.04;
+    letter-spacing: -1.6px;
+    color: var(--text);
+    max-width: 6.6in;
+    margin-bottom: 28px;
+  }
+  .cover h1 em {
+    font-style: italic;
+    color: var(--muted);
+  }
+  .cover .subhead {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--text);
+    max-width: 5.6in;
+    margin-bottom: 22px;
+  }
+  .cover .support {
+    font-family: var(--display-font);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--muted);
+    max-width: 5.4in;
+  }
+  .cover .cover-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(41,42,45,0.18);
+    padding-top: 22px;
+    margin-top: 36px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .cover .cover-meta strong {
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+  }
+
+  /* Callouts */
+  .callout {
+    background: var(--orange-soft);
+    border-left: 3px solid var(--orange);
+    padding: 22px 26px;
+    margin: 24px 0;
+    border-radius: 4px;
+  }
+  .callout .stat {
+    font-family: var(--display-font);
+    font-style: italic;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+  .callout p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.55;
+  }
+
+  .pullquote {
+    font-family: var(--display-font);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--text);
+    margin: 28px 0;
+    padding-left: 24px;
+    border-left: 2px solid var(--orange);
+    max-width: 6in;
+  }
+  .pullquote .attribution {
+    display: block;
+    font-family: var(--body-font);
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  /* Risk framework cards */
+  .risk-stack { display: flex; flex-direction: column; gap: 18px; margin-top: 8px; }
+  .risk-card {
+    padding: 22px 26px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    box-shadow: var(--shadow);
+    page-break-inside: avoid;
+  }
+  .risk-card.green  { background: var(--green-soft);  border-color: rgba(110,142,99,0.25); }
+  .risk-card.yellow { background: var(--yellow-soft); border-color: rgba(198,155,74,0.28); }
+  .risk-card.red    { background: var(--red-soft);    border-color: rgba(177,84,61,0.28); }
+
+  .risk-card .head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .risk-card .dot {
+    width: 18px; height: 18px; border-radius: 50%;
+    display: inline-block;
+    flex: none;
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,0.06);
+  }
+  .green  .dot { background: #7fa874; }
+  .yellow .dot { background: #d6a957; }
+  .red    .dot { background: #c25e44; }
+
+  .risk-card h3 {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+    color: var(--text);
+    margin: 0;
+  }
+  .risk-card .what,
+  .risk-card .do {
+    margin-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .risk-card .label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .risk-card ul { margin: 6px 0 0; }
+  .risk-card ul li { font-size: 13.5px; margin-bottom: 3px; }
+
+  /* Signals grid */
+  .signal {
+    page-break-inside: avoid;
+    margin-bottom: 22px;
+  }
+  .signal h4 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .signal h4 .num {
+    color: var(--orange);
+    font-family: var(--display-font);
+    font-style: italic;
+    margin-right: 8px;
+    font-weight: 400;
+  }
+
+  /* Decision blocks */
+  .decision {
+    page-break-inside: avoid;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .decision:last-child,
+  .decision:has(+ .page-footer) { border-bottom: 0; }
+  .decision h4 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .decision h4 .num {
+    color: var(--orange);
+    font-family: var(--display-font);
+    font-style: italic;
+    margin-right: 10px;
+    font-weight: 400;
+  }
+  .decision .why {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Final CTA */
+  .cta-block {
+    background: var(--bg-alt);
+    border-radius: 16px;
+    padding: 42px 38px;
+    text-align: center;
+    margin-top: 28px;
+    page-break-inside: avoid;
+  }
+  .cta-block .cta-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .cta-block h3 {
+    font-family: var(--display-font);
+    font-size: 30px;
+    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: -0.6px;
+    color: var(--text);
+    margin-bottom: 14px;
+    max-width: 5in;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-block h3 em { font-style: italic; color: var(--muted); }
+  .cta-block p {
+    font-size: 14.5px;
+    color: var(--muted);
+    max-width: 4.6in;
+    margin: 0 auto 22px;
+    line-height: 1.55;
+  }
+  .cta-button {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 300px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .cta-button:hover { background: #c2633f; }
+  .cta-contact {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .cta-contact strong { color: var(--text); font-weight: 500; }
+
+  /* Sign-off */
+  .signoff {
+    margin-top: 28px;
+    font-family: var(--display-font);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .signoff strong {
+    display: block;
+    font-family: var(--body-font);
+    font-style: normal;
+    font-weight: 500;
+    color: var(--text);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Section number marker */
+  .section-marker {
+    font-family: var(--display-font);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    letter-spacing: 0;
+  }
+  .section-marker .num {
+    color: var(--orange);
+    margin-right: 6px;
+  }
+
+  /* ===== IMAGE PATTERNS ===== */
+
+  /* Cover: two-column layout with photo on the right */
+  .cover-layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 44px;
+    align-items: stretch;
+    padding: 18px 0 24px;
+  }
+  .cover-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cover-photo {
+    margin: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    min-height: 7in;
+    box-shadow: 0 28px 60px rgba(41,42,45,0.18);
+    align-self: stretch;
+  }
+  .cover-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  /* Slightly tighter headline so it sits well in narrower column */
+  .cover h1 { font-size: 52px; max-width: 4.6in; }
+
+  /* Banner image at top of a page (chapter-opener) */
+  .banner {
+    margin: 0 0 36px;
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(41,42,45,0.06);
+  }
+  .banner img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .banner.tall { height: 220px; }
+
+  /* Page-level split: tall image column + wider text column */
+  .page-split {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 0.65fr 1fr;
+    gap: 36px;
+    align-items: stretch;
+    margin-bottom: 8px;
+  }
+  .page-split.img-left { grid-template-columns: 0.65fr 1fr; }
+  .page-split.img-right { grid-template-columns: 1fr 0.65fr; }
+
+  .page-split-img {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    align-self: stretch;
+    min-height: 7.5in;
+    box-shadow: 0 20px 50px rgba(41,42,45,0.10);
+  }
+  .page-split-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .page-split-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /* Side-by-side: text/callout left, photo right (or reversed) */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+    align-items: stretch;
+    margin: 28px 0;
+  }
+  .split-img {
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 220px;
+    box-shadow: 0 12px 32px rgba(41,42,45,0.06);
+  }
+  .split-img img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .split-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .split-text .callout { margin: 0; }
+
+  /* Aside variant: wider image left, text right */
+  .split.aside {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin: 0 0 28px;
+    align-items: stretch;
+  }
+  .split.aside .split-img {
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    border-radius: 12px;
+  }
+  .split.aside .split-text { justify-content: flex-start; }
+
+  /* Magazine-style: image floats left at its natural ratio, text wraps */
+  .aside-flow {
+    display: flow-root;
+    margin-bottom: 24px;
+  }
+  .aside-float {
+    float: left;
+    width: 48%;
+    aspect-ratio: 3 / 2;
+    margin: 4px 28px 14px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(41,42,45,0.08);
+  }
+  .aside-float img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .aside-float.portrait {
+    width: 40%;
+    aspect-ratio: 2 / 3;
+  }
+  .aside-float.square {
+    aspect-ratio: 1 / 1;
+  }
+  .aside-float.right {
+    float: right;
+    margin: 4px 0 14px 28px;
+  }
+
+  /* Banner above the CTA block */
+  .cta-banner {
+    margin: 32px 0 -8px;
+    height: 360px;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+  }
+  .cta-banner img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 28%;
+    display: block;
+  }
+  .cta-block.with-banner { border-radius: 0 0 16px 16px; margin-top: 0; }
+
+  /* Drop the footer rule directly under the CTA so it has room to breathe */
+  .cta-block + .page-footer {
+    border-top: 0;
+    padding-top: 32px;
+  }
+
+  /* Avoid orphans inside cards / image blocks */
+  .signal, .decision, .risk-card, .callout, .pullquote, .cta-block,
+  .banner, .split, .cta-banner {
+    break-inside: avoid;
+  }
+
+  /* ----- PRINT ----- */
+  @page {
+    size: Letter portrait;
+    margin: 0.6in;
+  }
+
+  @media print {
+    body {
+      background: #ffffff !important;
+      padding: 0;
+      margin: 0;
+    }
+    .page {
+      width: auto;
+      min-height: auto;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      background: transparent;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: auto; }
+
+    .cover {
+      background: linear-gradient(256.23deg, #d9d4ca 0%, #eeece3 100%) !important;
+      padding: 0.25in;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      min-height: 10in;
+    }
+
+    /* keep colored elements colorful when printing */
+    .callout, .risk-card, .cta-block, .cta-button {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    h2.section-title { color: var(--orange) !important; }
+    .eyebrow, .section-marker .num, .cover .cover-eyebrow,
+    .page-header .section-tag, .signal h4 .num, .decision h4 .num,
+    .pullquote, .cta-block .cta-eyebrow { color: var(--orange) !important; }
+
+    a { color: inherit; text-decoration: none; }
+    .page-header, .page-footer {
+      display: flex !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== COVER ============== -->
+<section class="page cover">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span>2026 Edition</span>
+  </div>
+
+  <div class="cover-layout">
+    <div class="cover-body">
+      <div class="cover-eyebrow">2026 Family Care Report</div>
+      <h1>When it's no longer safe<br>for a parent to <em>live alone</em>.</h1>
+      <p class="subhead">The early warning signs, risk factors, and decision thresholds most families miss — until a fall, a hospital visit, or an emergency forces action.</p>
+      <p class="support">Based on 2025 caregiving research and the latest national data on aging, home safety, and care transitions.</p>
+    </div>
+    <figure class="cover-photo">
+      <img src="../images/lead-magnet/Hero.png" alt="Older man leaning in lovingly toward a woman in a wheelchair, outdoors among trees">
+    </figure>
+  </div>
+
+  <div class="cover-meta">
+    <div><strong>For Families</strong> &nbsp;·&nbsp; Free Guide</div>
+    <div>M&amp;L In-Home Care</div>
+  </div>
+</section>
+
+<!-- ============== SECTION 1: NOTE TO THE READER ============== -->
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 01 / Note to the Reader</span>
+  </div>
+
+  <div class="page-split img-left">
+    <figure class="page-split-img">
+      <img src="../images/lead-magnet/11LM.jpg" alt="Caregiver holding a senior's hand in soft window light">
+    </figure>
+    <div class="page-split-body">
+      <div class="section-marker"><span class="num">01</span>A note before you begin</div>
+      <h2 class="section-title">A short letter <em>before you read further.</em></h2>
+
+      <p class="lead">If you're reading this, it likely means you've started to notice changes in someone you care about — and you're trying to figure out what to do next.</p>
+
+      <p>We know this isn't something people casually search for. That's not always easy to sit with.</p>
+
+      <p>One of the biggest challenges families face is that decline doesn't happen all at once. It's gradual. Subtle. Easy to explain away.</p>
+
+      <p>Most people don't realize how serious things have become until something forces the issue — a fall, a hospital visit, or a moment that felt too close for comfort. We put this report together to help with that exact gap.</p>
+
+      <p>Not to alarm you. Not to push you into a decision. But to give you a clearer way to look at what's happening, understand what to watch for, and feel more confident about what to do next.</p>
+
+      <p>Because the goal isn't to overreact. It's to avoid being caught off guard.</p>
+
+      <p>As you read, you'll start to see patterns — things that feel familiar, things you may have already noticed, and things you may not have connected yet. That clarity is what matters.</p>
+
+      <p>And if nothing else, we hope this helps you feel a little more prepared moving forward.</p>
+
+      <div class="signoff">
+        With care,
+        <strong>M&amp;L In-Home Care</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>02</span>
+  </div>
+</section>
+
+<!-- ============== SECTION 2: WHY THIS DECISION IS SO HARD ============== -->
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 02 / Why It's Hard</span>
+  </div>
+
+  <div class="section-marker"><span class="num">02</span>The reason this decision feels so heavy</div>
+  <h2 class="section-title">Why this decision <em>is so hard.</em></h2>
+
+  <p class="lead">The reality is, the majority of these situations don't feel urgent — until they suddenly are.</p>
+
+  <div class="split">
+    <div class="split-text">
+      <div class="callout">
+        <span class="stat">1 in 4</span>
+        <p>Adults over 65 falls each year — and most families don't realize the risk until after it happens.</p>
+      </div>
+    </div>
+    <figure class="split-img">
+      <img src="../images/lead-magnet/21LM.jpg" alt="Older woman gazing thoughtfully out a window — the weight of a hard decision">
+    </figure>
+  </div>
+
+  <p>Decline rarely happens all at once. It shows up in small ways:</p>
+  <ul>
+    <li>A missed step</li>
+    <li>A forgotten detail</li>
+    <li>A little more effort to do everyday things</li>
+  </ul>
+  <p>Each one feels minor on its own, so it's easy to move past it and carry on.</p>
+
+  <h3 class="subhead">It's also easy to normalize what's happening.</h3>
+  <p>So you find yourself saying things like:</p>
+  <ul>
+    <li>"This is just part of getting older."</li>
+    <li>"They've always been a little forgetful."</li>
+    <li>"It's probably nothing serious."</li>
+  </ul>
+  <p>And sometimes, that's true. But sometimes, it isn't.</p>
+
+  <p>At the same time, your parent can still seem completely fine in other moments. They're often able to hold a conversation, recognize people, and insist they don't need help. That contrast makes it harder to trust your instincts about what's actually changing.</p>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>03</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 02 / Why It's Hard</span>
+  </div>
+
+  <div class="aside-flow">
+    <figure class="aside-float portrait">
+      <img src="../images/lead-magnet/22LM.jpg" alt="Senior man in a wheelchair with a caregiver's hand on his shoulder — the weight of dealing with many things at once">
+    </figure>
+    <h3 class="subhead">You're also not just dealing with one thing.</h3>
+    <p>There's family, distance, daily responsibilities — and a parent who may not want to talk about it. So even if something feels off, it's easy to push the decision down the list and come back to it later.</p>
+
+    <p>And when you do think about taking action, it can feel bigger than it actually is. Getting help might feel like:</p>
+    <ul>
+      <li>Taking away independence</li>
+      <li>Making something "official"</li>
+      <li>Changing the family dynamic</li>
+    </ul>
+    <p>Which makes it easier to wait than risk acting too soon.</p>
+  </div>
+
+  <p>In the end, most families end up in the same place — somewhere in between. You might be thinking:</p>
+
+  <div class="pullquote">
+    "I feel like something's changing. But I'm not sure how serious it is yet. Maybe we just wait and see…"
+    <span class="attribution">A common starting point for most families</span>
+  </div>
+
+  <p>This is a very normal place to be. The challenge is that this stage of uncertainty is where most delays happen — not because families don't care, but because they don't have a clear way to evaluate what's actually going on.</p>
+
+  <p>And when things aren't clear, waiting feels like the safest option. But in most cases, what actually helps is clarity, and a decision at the right time.</p>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>04</span>
+  </div>
+</section>
+
+<!-- ============== SECTION 3: WHAT FAMILIES NOTICE FIRST ============== -->
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 03 / Early Signals</span>
+  </div>
+
+  <div class="aside-flow">
+    <figure class="aside-float">
+      <img src="../images/lead-magnet/20LM.jpg" alt="Older woman pausing with hand to her forehead — early signs of forgetfulness or confusion">
+    </figure>
+    <div class="section-marker"><span class="num">03</span>From vague worry to identifiable signals</div>
+    <h2 class="section-title">What families <em>usually notice first.</em></h2>
+    <p class="lead">Most serious issues don't start with a crisis. They start with small, noticeable changes.</p>
+    <p>According to the National Institute on Aging, early signs of declining independence often show up in everyday behaviors long before a major incident happens. These aren't diagnoses — they're signals. And they're often the first indication that more support may be needed.</p>
+  </div>
+
+  <h3 class="subhead">Common early signs families notice</h3>
+
+  <div class="signal">
+    <h4><span class="num">01</span>Confusion or forgetfulness</h4>
+    <p class="muted">Repeating the same questions, forgetting appointments, getting confused about time or place. Early cognitive changes are one of the most common precursors to loss of independence — and they're often dismissed at first.</p>
+  </div>
+
+  <div class="signal">
+    <h4><span class="num">02</span>Changes in mobility or balance</h4>
+    <p class="muted">Slower walking, hesitation when standing or sitting, needing support to move around safely. According to the CDC, 1 in 4 adults over 65 falls each year, and many of those falls are linked to subtle mobility changes that were already present.</p>
+  </div>
+
+  <div class="signal">
+    <h4><span class="num">03</span>Decline in personal hygiene</h4>
+    <p class="muted">Wearing the same clothes repeatedly, skipping bathing routines, a general drop in self-care. This is often one of the earlier signs that daily tasks are becoming harder to manage independently.</p>
+  </div>
+
+  <div class="signal">
+    <h4><span class="num">04</span>Weight changes or poor nutrition</h4>
+    <p class="muted">Noticeable weight loss, uneaten food, difficulty preparing meals. Research shows that poor nutrition in older adults is closely tied to increased health risks, including weakness, falls, and hospitalization.</p>
+  </div>
+
+  <div class="signal">
+    <h4><span class="num">05</span>Increased isolation</h4>
+    <p class="muted">Fewer social interactions, avoiding activities they used to enjoy, staying home more often. Isolation is more than emotional — it's been linked to faster cognitive and physical decline.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>05</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 03 / Early Signals</span>
+  </div>
+
+  <h3 class="subhead">Why these signs matter</h3>
+  <p>Individually, each of these can seem small. Easy to explain. Easy to overlook. But when they start to show up together — or become more frequent — they often point to a bigger shift.</p>
+
+  <h3 class="subhead">What most families miss</h3>
+  <p>It's not one major event that signals a change. It's a pattern. And that pattern usually appears weeks or months before something serious happens.</p>
+
+  <div class="pullquote">
+    If you've started noticing one or more of these signs, you're not overreacting. You're catching something early — and that's exactly when you have the most options.
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>06</span>
+  </div>
+</section>
+
+<!-- ============== SECTION 4: HIDDEN RISKS ============== -->
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 04 / Hidden Risks</span>
+  </div>
+
+  <figure class="banner">
+    <img src="../images/lead-magnet/13LM.jpg" alt="Senior walking with a cane alongside a caregiver outdoors">
+  </figure>
+
+  <div class="section-marker"><span class="num">04</span>The risks that don't look like risks</div>
+  <h2 class="section-title">The hidden risks <em>families underestimate.</em></h2>
+
+  <p class="lead">Most of the real risks at home don't look like risks at all. In many cases, the biggest dangers are the result of small changes that quietly increase risk over time.</p>
+
+  <div class="signal">
+    <h4><span class="num">01</span>Fall risk increases gradually</h4>
+    <p class="muted">Falls are rarely random. They're usually the result of changes that build over time — reduced balance, slower reaction time, weaker muscles, subtle mobility issues. According to the CDC, falls are the leading cause of injury-related deaths among adults 65+, and most of those falls are linked to factors that were already present beforehand.</p>
+  </div>
+
+  <div class="signal">
+    <h4><span class="num">02</span>Medication becomes harder to manage</h4>
+    <p class="muted">Many older adults take multiple medications each day. Over time, this can lead to missed doses, incorrect timing, or accidental double-dosing. Even small medication errors can lead to serious complications — dizziness, confusion, or hospitalization.</p>
+  </div>
+
+  <div class="signal">
+    <h4><span class="num">03</span>The home environment becomes less safe</h4>
+    <p class="muted">A home that once felt completely safe can slowly become harder to navigate. Common risks: loose rugs or clutter, poor lighting, stairs or uneven surfaces, bathrooms without proper support. None of these are major on their own — but combined with mobility changes, they increase the likelihood of a fall.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>07</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 04 / Hidden Risks</span>
+  </div>
+
+  <div class="signal">
+    <h4><span class="num">04</span>Vision and balance changes go unnoticed</h4>
+    <p class="muted">Vision and balance issues often happen gradually — misjudging distances, difficulty navigating familiar spaces, increased risk of tripping or falling. Because these changes happen slowly, they're often overlooked until something happens.</p>
+  </div>
+
+  <div class="signal">
+    <h4><span class="num">05</span>The post-hospital window is high risk</h4>
+    <p class="muted">According to the Agency for Healthcare Research and Quality (AHRQ), the transition from hospital to home is one of the highest-risk periods for older adults. Without proper support, the likelihood of complications or readmission increases. Many families assume things are "back to normal" after discharge — but this is often when additional support is needed most.</p>
+  </div>
+
+  <h3 class="subhead">Why these risks matter together</h3>
+  <p>Individually, each of these risks may seem manageable. But when they start to overlap, the likelihood of something serious increases. It's not just one factor — it's how they combine.</p>
+
+  <div class="callout">
+    <span class="stat">The key insight</span>
+    <p>Most serious incidents aren't caused by one major issue. They're the result of multiple smaller risks that were already there — just not fully recognized.</p>
+  </div>
+
+  <p>If you've noticed even a few of these changes, it doesn't mean something bad is about to happen. But it does mean it's worth taking a closer look. Because the earlier you understand the risk, the more control you have over what happens next.</p>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>08</span>
+  </div>
+</section>
+
+<!-- ============== SECTION 5: WAITING AND WATCHING ============== -->
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 05 / The Cost of Waiting</span>
+  </div>
+
+  <figure class="banner">
+    <img src="../images/lead-magnet/15LM.jpg" alt="Caregiver's hand resting on a senior's shoulder, reassuring presence">
+  </figure>
+
+  <div class="section-marker"><span class="num">05</span>Why doing nothing isn't neutral</div>
+  <h2 class="section-title">Why "waiting and watching" <em>can backfire.</em></h2>
+
+  <p class="lead">Most families don't choose to wait. They wait because things don't feel urgent yet. And on the surface, that makes sense.</p>
+
+  <p>The challenge is that risk doesn't stay the same over time. It usually increases quietly.</p>
+
+  <h3 class="subhead">What the data shows</h3>
+
+  <h4 class="minor">A single fall doesn't happen in isolation.</h4>
+  <ul>
+    <li>After one fall, the risk of falling again significantly increases.</li>
+    <li>Falls are one of the leading causes of injury and hospitalization in adults over 65.</li>
+    <li>Many of these incidents are linked to changes that were already present beforehand.</li>
+  </ul>
+
+  <h4 class="minor">Cognitive decline follows a similar pattern.</h4>
+  <ul>
+    <li>Subtle memory issues often appear long before a diagnosis — typically, a serious fall or hospitalization is what brings those issues to light.</li>
+    <li>Studies have shown that a noticeable percentage of older adults receive a dementia diagnosis within a year after a major fall.</li>
+  </ul>
+
+  <h4 class="minor">There's a critical window after hospital visits.</h4>
+  <ul>
+    <li>The transition from hospital to home is one of the highest-risk periods.</li>
+    <li>Without proper support, the likelihood of complications or readmission increases.</li>
+    <li>Many families assume things are "back to normal" after discharge — but that's not always the case.</li>
+  </ul>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>09</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 05 / The Cost of Waiting</span>
+  </div>
+
+  <h3 class="subhead">Why this matters</h3>
+  <p>None of these situations start as emergencies. They build over time. And when action is delayed, decisions often have to be made quickly, under pressure.</p>
+
+  <h3 class="subhead">What most families don't expect</h3>
+  <p>Waiting doesn't just delay the decision. It often reduces your options.</p>
+  <ul>
+    <li>Fewer choices</li>
+    <li>Less time to plan</li>
+    <li>More stress when something does happen</li>
+  </ul>
+
+  <div class="pullquote">
+    Taking action early doesn't mean rushing into care. It means understanding what's happening <em>before</em> things become urgent. So if something changes — you're not reacting. You're prepared.
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>10</span>
+  </div>
+</section>
+
+<!-- ============== SECTION 6: RISK FRAMEWORK ============== -->
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 06 / Risk Framework</span>
+  </div>
+
+  <div class="section-marker"><span class="num">06</span>A simple way to see where you are</div>
+  <h2 class="section-title">A practical family <em>risk framework.</em></h2>
+
+  <p class="lead"><em class="accent">"Okay… I see some of the signs. But how serious is this, really?"</em></p>
+
+  <p>Not every situation requires immediate action. But clarity makes the decision-making process easier.</p>
+
+  <p>Most situations fall into one of three categories:</p>
+  <ul>
+    <li><strong>Green</strong> — things are stable</li>
+    <li><strong>Yellow</strong> — early warning signs are showing</li>
+    <li><strong>Red</strong> — risk is elevated and action is needed</li>
+  </ul>
+
+  <p>This isn't a diagnosis. It's a practical way to understand where things stand right now.</p>
+
+  <div class="risk-stack">
+
+    <div class="risk-card green">
+      <div class="head"><span class="dot"></span><h3>🟢 &nbsp; Green — Mostly Independent</h3></div>
+      <p>At this stage, things are generally stable. There may be small changes, but they're not impacting safety in a meaningful way.</p>
+      <div class="what">
+        <span class="label">You might notice</span>
+        <ul>
+          <li>Minor forgetfulness that doesn't affect daily life</li>
+          <li>Independent with meals, hygiene, and movement</li>
+          <li>No recent falls or hospital visits</li>
+          <li>Able to manage household tasks and finances independently</li>
+        </ul>
+      </div>
+      <div class="do">
+        <span class="label">What to do</span>
+        <ul>
+          <li>Keep an eye on changes over time</li>
+          <li>Start light conversations about future support</li>
+          <li>Make small home-safety improvements if needed</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>11</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 06 / Risk Framework</span>
+  </div>
+
+  <div class="risk-stack">
+
+    <div class="risk-card yellow">
+      <div class="head"><span class="dot"></span><h3>🟡 &nbsp; Yellow — Early Warning Signs</h3></div>
+      <p>This is where most families start to feel unsure. Things aren't urgent, but they're no longer fully stable.</p>
+      <div class="what">
+        <span class="label">You might notice</span>
+        <ul>
+          <li>Missed medications or confusion around routines</li>
+          <li>A minor fall or near fall</li>
+          <li>Increased forgetfulness or repeated questions</li>
+          <li>Decline in hygiene or daily habits</li>
+          <li>Eating less or struggling with meals</li>
+          <li>Pulling back from social activity</li>
+        </ul>
+      </div>
+      <div class="do">
+        <span class="label">What to do</span>
+        <ul>
+          <li>Start actively evaluating support options</li>
+          <li>Increase check-ins or oversight</li>
+          <li>Consider part-time help or a professional assessment</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="risk-card red">
+      <div class="head"><span class="dot"></span><h3>🔴 &nbsp; Red — Elevated Risk</h3></div>
+      <p>At this stage, safety is becoming a real concern. Waiting often leads to decisions being made under pressure.</p>
+      <div class="what">
+        <span class="label">You might notice</span>
+        <ul>
+          <li>Recent fall or hospital visit</li>
+          <li>Difficulty walking or moving safely</li>
+          <li>Confusion that affects daily decisions</li>
+          <li>Inability to manage medications properly</li>
+          <li>Struggling with basic daily tasks (bathing, dressing, eating)</li>
+          <li>Wandering or disorientation</li>
+        </ul>
+      </div>
+      <div class="do">
+        <span class="label">What to do</span>
+        <ul>
+          <li>Take action to put support in place</li>
+          <li>Involve professionals to assess needs</li>
+          <li>Focus on safety and stability first</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="subhead">How to use this</h3>
+  <p>You don't need to overanalyze it. Just ask yourself: <em class="accent">"Which category feels closest to what I'm seeing right now?"</em> Even if it's not a perfect fit, you'll usually land somewhere near one of these.</p>
+
+  <div class="pullquote">
+    This isn't about labeling the situation. It's about understanding it clearly enough to make a good decision. Once things are clear, the next step becomes a lot easier.
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>12</span>
+  </div>
+</section>
+
+<!-- ============== SECTION 7: FIVE DECISIONS BEFORE A CRISIS ============== -->
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 07 / Five Decisions</span>
+  </div>
+
+  <figure class="banner">
+    <img src="../images/lead-magnet/17LM.jpg" alt="Caregiver kneeling, holding a senior's hand in a sunlit room">
+  </figure>
+
+  <div class="section-marker"><span class="num">07</span>A simple family planning tool</div>
+  <h2 class="section-title">Five decisions families <em>should make before a crisis.</em></h2>
+
+  <p class="lead">When something does change — and it usually does — families who've already thought through these questions make better, faster decisions with far less stress.</p>
+
+  <div class="decision">
+    <h4><span class="num">01</span>Who manages medication?</h4>
+    <p class="muted">Is there a system, or is it memory-based? Have there been missed doses or confusion?</p>
+  </div>
+
+  <div class="decision">
+    <h4><span class="num">02</span>Who checks in — and how often?</h4>
+    <p class="muted">Who is actually seeing your parent regularly? Would they notice if something changed?</p>
+  </div>
+
+  <div class="decision">
+    <h4><span class="num">03</span>What changes at home have already happened?</h4>
+    <p class="muted">Have routines shifted? Are certain tasks being avoided? Has the home itself been adjusted?</p>
+  </div>
+
+  <div class="decision">
+    <h4><span class="num">04</span>What happens after the next fall or ER visit?</h4>
+    <p class="muted">Who steps in immediately? Is there a plan — or would decisions be made in the moment?</p>
+  </div>
+
+  <div class="decision">
+    <h4><span class="num">05</span>What level of support would be acceptable if risk increases?</h4>
+    <p class="muted">Would part-time help feel okay? Would full-time care ever be considered? What would your parent realistically accept?</p>
+  </div>
+
+  <div class="pullquote">
+    You're not deciding now — you're defining boundaries. Even partial answers to these questions can make a big difference when something changes.
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>13</span>
+  </div>
+</section>
+
+<!-- ============== SECTION 8: WHAT EARLY ACTION LOOKS LIKE ============== -->
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 08 / Taking Action Early</span>
+  </div>
+
+  <div class="aside-flow">
+    <figure class="aside-float square">
+      <img src="../images/lead-magnet/08LM.jpg" alt="Caregiver serving a meal to a senior at home — small, everyday actions that add up">
+    </figure>
+    <div class="section-marker"><span class="num">08</span>It's smaller than you think</div>
+    <h2 class="section-title">What taking action early <em>actually looks like.</em></h2>
+    <p class="lead">You've likely started to recognize some of the signs already. The next step isn't to rush into a big decision. It's to get clear on a few smaller ones first.</p>
+  </div>
+
+  <div class="decision">
+    <h4><span class="num">01</span>Who is responsible for keeping an eye on things day-to-day?</h4>
+    <p>In many families, this is unclear. Everyone assumes someone is paying attention — but no one is fully accountable.</p>
+    <p class="muted"><strong>Food for thought:</strong> Who checks in regularly? How often are they actually seeing your parent? Would they notice if something changed?</p>
+    <p class="why">Why this matters — small changes are easy to miss without consistent oversight.</p>
+  </div>
+
+  <div class="decision">
+    <h4><span class="num">02</span>How are medications being managed right now?</h4>
+    <p>Medication issues are one of the most common causes of complications — and they're often invisible until something goes wrong.</p>
+    <p class="muted"><strong>Consider:</strong> Who ensures medications are taken correctly? Is there a system in place, or is it memory-based? Have there been any missed doses or confusion?</p>
+    <p class="why">Why this matters — even small errors can lead to serious health issues.</p>
+  </div>
+
+  <div class="decision">
+    <h4><span class="num">03</span>What changes have already happened at home?</h4>
+    <p>Most families underestimate how much has already shifted. Take a step back and look at what's different.</p>
+    <p class="muted"><strong>Observe:</strong> Have routines changed? Are certain tasks being avoided? Has the home been adjusted in any way?</p>
+    <p class="why">Why this matters — these changes are often early signals of increasing risk.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>14</span>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 08 / Taking Action Early</span>
+  </div>
+
+  <div class="decision">
+    <h4><span class="num">04</span>What happens if something does go wrong?</h4>
+    <p>This is the question most families avoid. But it's one of the most important.</p>
+    <p class="muted"><strong>Ask yourself:</strong> What happens after a fall or ER visit? Who steps in immediately? Is there a plan — or would decisions be made in the moment?</p>
+    <p class="why">Why this matters — decisions made under pressure are rarely the best ones.</p>
+  </div>
+
+  <div class="decision">
+    <h4><span class="num">05</span>What level of support would feel acceptable if things got worse?</h4>
+    <p>This helps remove uncertainty later. You're not deciding now — you're just defining boundaries.</p>
+    <p class="muted"><strong>Consider:</strong> Would part-time help feel okay? Would full-time care ever be considered? What would your parent realistically accept?</p>
+    <p class="why">Why this matters — when expectations are unclear, decisions become harder.</p>
+  </div>
+
+  <h3 class="subhead">You don't need perfect answers.</h3>
+  <p>This isn't about getting everything figured out today. It's about starting the conversation — either with yourself or with your family. Even having partial answers to these questions can make a big difference when something changes.</p>
+
+  <div class="pullquote">
+    Clarity now creates a lot more control later.
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>15</span>
+  </div>
+</section>
+
+<!-- ============== SECTION 9: CONCLUSION + CTA ============== -->
+<section class="page">
+  <div class="page-header">
+    <span class="mark">M&amp;L In-Home Care</span>
+    <span class="section-tag">Section 09 / Conclusion</span>
+  </div>
+
+  <div class="section-marker"><span class="num">09</span>A clearer picture, a calmer next step</div>
+  <h2 class="section-title">Where to go <em>from here.</em></h2>
+
+  <p class="lead">By now, you've probably seen one of two things — either things are still mostly stable and you just need to stay aware, or there are signs that it may be time to look more closely at what kind of support could help.</p>
+
+  <p>Both are useful to know. Because the goal of this report was never to push you into a decision. It was to help you reduce uncertainty.</p>
+
+  <p>That's what most families need first. Not pressure. Not urgency. Just a clearer picture of what's happening and what to do next.</p>
+
+  <p>The hardest situations usually aren't the ones where families made the wrong choice. They're the ones where families had to make a choice <em>too quickly</em>, with too little clarity, after something had already happened.</p>
+
+  <h3 class="subhead">That's why earlier awareness matters.</h3>
+  <p>It gives you more time to:</p>
+  <ul>
+    <li>Notice patterns before they become bigger problems</li>
+    <li>Talk through options without feeling rushed</li>
+    <li>Make a thoughtful decision based on what's actually needed</li>
+  </ul>
+
+  <p>And if after reading this, you're still unsure — that's okay too. Uncertainty doesn't mean you're behind. It means you need a clearer outside perspective. That's exactly where a simple conversation can help.</p>
+
+  <figure class="cta-banner">
+    <img src="../images/lead-magnet/10LM.jpg" alt="Caregiver embracing a senior in a garden — closing image of partnership">
+  </figure>
+
+  <div class="cta-block with-banner">
+    <div class="cta-eyebrow">Free Consultation · No Obligation</div>
+    <h3>Book your free <em>Home Care Readiness Session.</em></h3>
+    <p>In a short conversation, we'll help you review the current situation, identify the most likely risks, and give you a clear next-step recommendation. No pressure. No obligation. Just clarity.</p>
+    <a class="cta-button" href="https://mlinhomecare.com">Schedule your free session →</a>
+    <div class="cta-contact"><strong>mlinhomecare.com</strong> &nbsp;·&nbsp; (000) 000-0000</div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-mark">M&amp;L In-Home Care · 2026 Family Care Report</span>
+    <span>16</span>
+  </div>
+</section>
+
+</body>
+</html>
