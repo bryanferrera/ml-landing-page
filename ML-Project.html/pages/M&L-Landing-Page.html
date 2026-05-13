@@ -43,6 +43,40 @@
 
   html { scroll-behavior: smooth; }
 
+  /* ─── DECK-STYLE SNAP SCROLL (desktop only) ─── */
+  @media (min-width: 901px) {
+    html {
+      scroll-padding-top: 64px;
+    }
+    #solution,
+    #why,
+    #services,
+    #testimonials,
+    #process,
+    #faq,
+    #cta-final {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+    #solution > .container,
+    #why > .container,
+    #services > .container,
+    #testimonials > .container,
+    #process > .container,
+    #faq > .container,
+    #cta-final > .container {
+      width: 100%;
+    }
+    #services,
+    #testimonials,
+    #faq {
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+    .faq-item { padding: 16px 0; }
+  }
+
   body {
     font-family: var(--font-sans);
     background: var(--c-bg);
@@ -67,6 +101,22 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--c-border);
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+  nav.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+  }
+  @media (max-width: 900px) {
+    nav.is-hidden {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    nav { transition: none; }
   }
   .nav-inner {
     max-width: var(--max-w);
@@ -245,10 +295,10 @@
   }
   .section-title {
     font-family: var(--font-sans);
-    font-size: 32px;
+    font-size: 48px;
     font-weight: 400;
-    line-height: 42px;
-    letter-spacing: -1.28px;
+    line-height: 58px;
+    letter-spacing: -1.92px;
     color: var(--c-text);
     margin-bottom: 24px;
   }
@@ -289,6 +339,7 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: background 280ms ease, transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
   }
   .icon-circle svg {
     width: 16px;
@@ -377,10 +428,10 @@
   }
   .hero-headline {
     font-family: var(--font-sans);
-    font-size: 48px;
+    font-size: 72px;
     font-weight: 400;
-    line-height: 54px;
-    letter-spacing: -1.76px;
+    line-height: 78px;
+    letter-spacing: -2.7px;
     color: #ffffff;
     margin-bottom: 24px;
   }
@@ -435,44 +486,7 @@
     flex-shrink: 0;
   }
 
-  /* ═══════════════════════════════════════
-     SECTION 2: TRUST STRIP / INLINE CTA
-  ═══════════════════════════════════════ */
-  #trust {
-    background: var(--c-bg);
-    padding: 36px 0;
-    border-top: 1px solid var(--c-border);
-    border-bottom: 1px solid var(--c-border);
-  }
-  .trust-cta {
-    display: flex;
-    align-items: center;
-    gap: 48px;
-    justify-content: space-between;
-  }
-  .trust-cta-left {
-    flex-shrink: 0;
-    max-width: 320px;
-  }
-  .trust-cta-title {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--c-text);
-    margin-bottom: 4px;
-    letter-spacing: -0.2px;
-  }
-  .trust-cta-desc {
-    font-size: 13px;
-    line-height: 20px;
-    color: var(--c-text-secondary);
-  }
-  .trust-cta-form {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    justify-content: flex-end;
-  }
+  /* ─── SHARED INPUT (used by hero easy-form) ─── */
   .trust-cta-input {
     font-family: var(--font-sans);
     font-size: 14px;
@@ -490,15 +504,165 @@
   .trust-cta-input::placeholder { color: #b0aea9; }
   .trust-cta-btn { white-space: nowrap; flex-shrink: 0; }
 
-  @media (max-width: 768px) {
-    .trust-cta {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
+  /* ─── HERO EASY-FORM (glass → solid on hover) ─── */
+  .hero-easy-form {
+    margin-top: 32px;
+    max-width: 560px;
+    padding: 24px;
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.22);
+    transition: background 240ms ease, border-color 240ms ease,
+                box-shadow 240ms ease, transform 240ms ease;
+  }
+  .hero-easy-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+    transition: color 240ms ease;
+  }
+  .hero-easy-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.82);
+    margin: 0 0 18px;
+    transition: color 240ms ease;
+  }
+  .hero-easy-form form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .hero-easy-form .trust-cta-input {
+    background: rgba(255,255,255,0.10);
+    color: #fff;
+    border-color: rgba(255,255,255,0.28);
+    width: auto;
+    flex: 1;
+    min-width: 140px;
+    transition: background 240ms ease, border-color 240ms ease, color 240ms ease;
+  }
+  .hero-easy-form .trust-cta-input::placeholder { color: rgba(255,255,255,0.65); }
+
+  .hero-easy-form:hover,
+  .hero-easy-form:focus-within,
+  .hero-easy-form.is-tapped {
+    background: #ffffff;
+    border-color: rgba(0,0,0,0.06);
+    box-shadow: 0 18px 50px rgba(20,18,15,0.28);
+    transform: translateY(-2px);
+  }
+  .hero-easy-form:hover .hero-easy-title,
+  .hero-easy-form:focus-within .hero-easy-title,
+  .hero-easy-form.is-tapped .hero-easy-title { color: var(--c-text); }
+  .hero-easy-form:hover .hero-easy-desc,
+  .hero-easy-form:focus-within .hero-easy-desc,
+  .hero-easy-form.is-tapped .hero-easy-desc { color: var(--c-text-secondary); }
+  .hero-easy-form:hover .trust-cta-input,
+  .hero-easy-form:focus-within .trust-cta-input,
+  .hero-easy-form.is-tapped .trust-cta-input {
+    background: var(--c-bg-alt);
+    color: var(--c-text);
+    border-color: var(--c-border);
+  }
+  .hero-easy-form:hover .trust-cta-input::placeholder,
+  .hero-easy-form:focus-within .trust-cta-input::placeholder,
+  .hero-easy-form.is-tapped .trust-cta-input::placeholder { color: #b0aea9; }
+  @media (max-width: 900px) {
+    .hero-easy-form { max-width: 100%; }
+  }
+
+  /* ═══════════════════════════════════════
+     BENTO GRID (used inside Still Wondering)
+  ═══════════════════════════════════════ */
+  .bento-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "big top"
+      "big bottom";
+    gap: 16px;
+    min-height: 340px;
+  }
+  .bento-card {
+    background: #dcd8d2;
+    border-radius: 20px;
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    min-height: 220px;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+  }
+  .bento-card:nth-child(1) { grid-area: big; }
+  .bento-card:nth-child(2) { grid-area: top; }
+  .bento-card:nth-child(3) { grid-area: bottom; }
+  .bento-card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: transform;
+  }
+  @media (hover: hover) and (min-width: 901px) {
+    .bento-card:hover .bento-card-img { transform: scale(1.07); }
+  }
+  .bento-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.42) 45%, rgba(0,0,0,0.05) 80%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .bento-card-text {
+    font-family: var(--font-sans);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: -0.88px;
+    color: #ffffff;
+    margin: 0;
+    max-width: 100%;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 1px 12px rgba(0,0,0,0.25);
+  }
+  @media (max-width: 900px) {
+    .bento-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+      grid-template-areas: "big" "top" "bottom";
+      min-height: 0;
+      gap: 14px;
     }
-    .trust-cta-left { max-width: 100%; }
-    .trust-cta-form { flex-wrap: wrap; justify-content: flex-start; width: 100%; }
-    .trust-cta-input { flex: 1; min-width: 140px; }
+    .bento-card { padding: 32px; min-height: 200px; }
+    .bento-card-text {
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: -0.8px;
+    }
+  }
+  @media (max-width: 480px) {
+    .bento-card { padding: 28px; min-height: 180px; }
+    .bento-card-text {
+      font-size: 18px;
+      line-height: 26px;
+      letter-spacing: -0.72px;
+    }
   }
 
   /* ═══════════════════════════════════════
@@ -554,12 +718,12 @@
   }
   .problem-card-headline {
     font-family: var(--font-sans);
-    font-size: 32px;
+    font-size: 48px;
     font-weight: 400;
-    line-height: 42px;
+    line-height: 58px;
     color: var(--c-text);
     margin-bottom: 24px;
-    letter-spacing: -1.28px;
+    letter-spacing: -1.92px;
   }
   .problem-body p {
     font-size: 18px;
@@ -612,7 +776,7 @@
     .problem-inner { grid-template-columns: 1fr; gap: 24px; }
     .problem-carousel { min-height: 400px; }
     .problem-card-block { padding: 32px; }
-    .problem-card-headline { font-size: 26px; line-height: 34px; }
+    .problem-card-headline { font-size: 38px; line-height: 46px; }
   }
 
   /* ═══════════════════════════════════════
@@ -701,12 +865,12 @@
   }
   .outcome-card-block .outcome-headline {
     font-family: var(--font-sans);
-    font-size: 32px;
+    font-size: 48px;
     font-weight: 400;
-    line-height: 42px;
+    line-height: 58px;
     color: var(--c-text);
     margin-bottom: 24px;
-    letter-spacing: -1.28px;
+    letter-spacing: -1.92px;
   }
   .outcome-body p {
     font-size: 18px;
@@ -757,7 +921,7 @@
   @media (max-width: 768px) {
     .outcome-inner { grid-template-columns: 1fr; gap: 24px; }
     .outcome-card-block { padding: 32px; }
-    .outcome-card-block .outcome-headline { font-size: 26px; line-height: 34px; }
+    .outcome-card-block .outcome-headline { font-size: 38px; line-height: 46px; }
   }
 
   /* ═══════════════════════════════════════
@@ -770,21 +934,88 @@
   .why-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
+    grid-template-areas:
+      "header header"
+      "media list";
+    column-gap: 80px;
+    row-gap: 56px;
+    align-items: center;
+  }
+  .why-header {
+    grid-area: header;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .why-media { grid-area: media; }
+  .why-list { grid-area: list; }
+  .why-desc {
+    font-size: 18px;
+    line-height: 30px;
+    color: var(--c-text-secondary);
+    max-width: 600px;
   }
   .why-reasons {
     display: flex;
     flex-direction: column;
-    gap: 28px;
-    margin-top: 8px;
+    gap: 32px;
   }
   .why-reason {
     display: flex;
-    align-items: flex-start;
-    gap: 16px;
+    align-items: center;
+    gap: 20px;
   }
-  .why-reason-text { font-size: 16px; line-height: 26px; color: var(--c-text); }
+  .why-reason .icon-circle {
+    width: 52px;
+    height: 52px;
+  }
+  .why-reason .icon-circle svg {
+    width: 20px;
+    height: 20px;
+  }
+  .why-reason-text { font-size: 18px; line-height: 30px; color: var(--c-text); }
+  .why-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    margin-top: 16px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--c-bg-alt);
+  }
+  .why-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 900ms ease;
+  }
+  .why-slide.is-active { opacity: 1; }
+  .why-slider-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+  }
+  .why-slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.55);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.25);
+    transition: background 200ms ease, transform 200ms ease;
+  }
+  .why-slider-dot:hover { background: rgba(255,255,255,0.9); }
+  .why-slider-dot.is-active { background: #fff; transform: scale(1.3); }
 
   /* ═══════════════════════════════════════
      SECTION 7: SERVICES
@@ -807,6 +1038,11 @@
     display: flex;
     flex-direction: column;
     gap: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                box-shadow 320ms ease;
   }
   .service-card-title {
     font-size: 18px;
@@ -814,11 +1050,37 @@
     color: var(--c-text);
     line-height: 26px;
     letter-spacing: -0.3px;
+    transition: color 240ms ease;
   }
   .service-card-desc {
     font-size: 14px;
     line-height: 22px;
     color: var(--c-text-secondary);
+  }
+  .service-card::after {
+    content: 'Learn more →';
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--c-btn);
+    letter-spacing: 0.02em;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 280ms ease, transform 280ms ease;
+  }
+  @media (hover: hover) and (min-width: 901px) {
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(41,42,45,0.14);
+    }
+    .service-card:hover .icon-circle {
+      background: var(--c-btn);
+    }
+    .service-card:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   .services-cta {
     margin-top: 56px;
@@ -830,20 +1092,24 @@
   ═══════════════════════════════════════ */
   #objection {
     background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-alt) 100%);
-    padding: 160px 0;
+    padding: 40px 0;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
   }
   .objection-inner {
-    max-width: 800px;
+    max-width: 1100px;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 64px;
+    gap: 32px;
     background: var(--c-white);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-card);
-    padding: 96px 64px;
+    padding: 56px 56px;
   }
   .objection-header {
     display: flex;
@@ -885,35 +1151,6 @@
     color: var(--c-text);
     margin: 0;
   }
-  .objection-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: left;
-    max-width: 480px;
-    width: 100%;
-    padding: 32px 40px;
-    background: transparent;
-    border: 1px solid var(--c-bg-alt);
-    border-radius: var(--radius-md);
-  }
-  .objection-bullets li {
-    font-size: 17px;
-    line-height: 26px;
-    color: var(--c-text);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .objection-bullets li::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--c-text);
-    flex-shrink: 0;
-  }
   .objection-bold {
     font-family: var(--font-serif);
     font-size: 28px;
@@ -931,10 +1168,10 @@
   }
 
   @media (max-width: 768px) {
-    .objection-inner { gap: 48px; padding: 64px 28px; }
+    #objection { min-height: 0; padding: 80px 0; }
+    .objection-inner { gap: 40px; padding: 56px 28px; }
     .objection-bold { font-size: 22px; line-height: 32px; }
     .objection-body p { font-size: 18px; line-height: 28px; }
-    .objection-bullets { padding: 28px 24px; }
   }
 
   /* ═══════════════════════════════════════
@@ -957,6 +1194,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    transition: transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                box-shadow 280ms ease,
+                z-index 0s linear 0s;
+    will-change: transform;
   }
   .testimonial-stars {
     color: #b5a99a;
@@ -968,11 +1209,24 @@
     line-height: 26px;
     color: var(--c-text);
     font-style: italic;
+    transition: font-size 280ms ease, line-height 280ms ease;
   }
   .testimonial-attr {
     font-size: 13px;
     color: var(--c-text-secondary);
     margin-top: auto;
+  }
+  @media (hover: hover) and (min-width: 901px) {
+    .testimonial-card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 24px 60px rgba(41,42,45,0.14);
+      z-index: 5;
+      position: relative;
+    }
+    .testimonial-card:hover .testimonial-quote {
+      font-size: 18px;
+      line-height: 28px;
+    }
   }
   .testimonials-cta {
     margin-top: 56px;
@@ -986,11 +1240,56 @@
     background: var(--c-bg);
     padding: 160px 0;
   }
+  .process-inner {
+    background: var(--c-text);
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(41,42,45,0.10),
+                0 8px 24px rgba(41,42,45,0.06);
+    padding: 80px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .process-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .process-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(20,18,15,0.82) 0%, rgba(20,18,15,0.62) 60%, rgba(20,18,15,0.78) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .process-inner > .process-header,
+  .process-inner > .process-steps {
+    position: relative;
+    z-index: 2;
+  }
+  .process-inner .section-eyebrow { color: rgba(255,255,255,0.78); }
+  .process-inner .section-title { color: #ffffff; }
+  .process-inner .process-step-number { color: rgba(255,255,255,0.35); }
+  .process-inner .process-step-title { color: #ffffff; }
+  .process-inner .process-step-desc { color: rgba(255,255,255,0.82); }
+  .process-header {
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
   .process-steps {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    margin-top: 64px;
   }
   .process-step {
     display: flex;
@@ -999,21 +1298,28 @@
   }
   .process-step-number {
     font-family: var(--font-sans);
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 400;
     color: var(--c-border);
     line-height: 1;
-    letter-spacing: -2px;
+    letter-spacing: -1.2px;
   }
   .process-step-title {
-    font-size: 18px;
+    font-size: 26px;
     font-weight: 500;
     color: var(--c-text);
-    letter-spacing: -0.3px;
+    letter-spacing: -0.4px;
+    line-height: 34px;
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .process-step-title { min-height: 0; display: block; }
   }
   .process-step-desc {
-    font-size: 15px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 28px;
     color: var(--c-text-secondary);
   }
 
@@ -1245,7 +1551,7 @@
     #hero { padding-top: calc(60px + 64px); padding-bottom: 120px; background-position: center center; }
     .hero-inner { flex-direction: column; }
     .hero-text { max-width: 100%; }
-    .hero-headline { font-size: 36px; line-height: 42px; }
+    .hero-headline { font-size: 54px; line-height: 62px; }
 
     .problem-inner,
     .solution-inner,
@@ -1254,9 +1560,11 @@
     .faq-inner,
     .local-inner,
     .cta-final-inner { grid-template-columns: 1fr; gap: 48px; }
+    .why-inner { grid-template-areas: "header" "media" "list"; }
 
     .testimonials-grid { grid-template-columns: 1fr; }
     .process-steps { grid-template-columns: 1fr; gap: 40px; }
+    .process-inner { padding: 56px 32px; gap: 40px; border-radius: 22px; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
 
     #problem, #solution, #outcome, #why, #services,
@@ -1272,8 +1580,8 @@
   @media (max-width: 480px) {
     :root { --pad-h: 20px; }
     #hero { padding-top: calc(40px + 64px); padding-bottom: 80px; }
-    .hero-headline { font-size: 32px; line-height: 38px; }
-    .section-title { font-size: 26px; line-height: 34px; }
+    .hero-headline { font-size: 44px; line-height: 52px; }
+    .section-title { font-size: 38px; line-height: 46px; }
     .services-grid { grid-template-columns: 1fr; }
     .solution-services { grid-template-columns: 1fr; }
     .footer-links { flex-direction: column; gap: 32px; }
@@ -1323,27 +1631,16 @@
           <li>Flexible care from a few hours to 24/7</li>
           <li>Serving Los Angeles &amp; San Fernando Valley</li>
         </ul>
-        <div class="reveal delay-4">
-          <a href="#cta-final" class="btn btn-primary">Book Your Free Care Consultation</a>
+        <div class="reveal delay-4 hero-easy-form">
+          <p class="hero-easy-title">Ready to get started?</p>
+          <p class="hero-easy-desc">Trusted support for families who need real help at home. Leave your details and we'll call you back.</p>
+          <form onsubmit="handleTrustFormSubmit(event)">
+            <input class="trust-cta-input" id="hero-tc-name" type="text" placeholder="Your name" required />
+            <input class="trust-cta-input" id="hero-tc-phone" type="tel" placeholder="Phone number" required />
+            <button type="submit" class="btn btn-primary trust-cta-btn">Book Consultation</button>
+          </form>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── SECTION 2: TRUST STRIP / INLINE CTA ─── -->
-<section id="trust">
-  <div class="container">
-    <div class="trust-cta reveal">
-      <div class="trust-cta-left">
-        <p class="trust-cta-title">Ready to get started?</p>
-        <p class="trust-cta-desc">Trusted support for families who need real help at home. Leave your details and we'll call you back.</p>
-      </div>
-      <form class="trust-cta-form" onsubmit="handleTrustFormSubmit(event)">
-        <input class="trust-cta-input" id="tc-name" type="text" placeholder="Your name" required />
-        <input class="trust-cta-input" id="tc-phone" type="tel" placeholder="Phone number" required />
-        <button type="submit" class="btn btn-primary trust-cta-btn">Get a Free Call Back</button>
-      </form>
     </div>
   </div>
 </section>
@@ -1502,14 +1799,24 @@
 <section id="why">
   <div class="container">
     <div class="why-inner">
-      <div class="reveal-left">
+      <div class="why-header reveal-left">
         <p class="section-eyebrow">Why M&L</p>
         <h2 class="section-title">Why Families <em>Choose M&L</em></h2>
-        <div style="font-size:16px; line-height:26px; color:var(--c-text-secondary); margin-top:8px;">
+        <div class="why-desc">
           Every family's situation is different. We show up with the right support for yours.
         </div>
       </div>
-      <div class="reveal-right delay-2">
+      <div class="why-media reveal-left delay-1">
+        <div class="why-slider" aria-roledescription="carousel">
+          <img class="why-slide is-active" src="/ML-Project.html/images/why-3.jpg" alt="" loading="lazy" />
+          <img class="why-slide" src="/ML-Project.html/images/why-1.jpg" alt="" loading="lazy" />
+          <div class="why-slider-dots" role="tablist">
+            <button class="why-slider-dot is-active" type="button" data-idx="0" aria-label="Show image 1"></button>
+            <button class="why-slider-dot" type="button" data-idx="1" aria-label="Show image 2"></button>
+          </div>
+        </div>
+      </div>
+      <div class="why-list reveal-right delay-2">
         <div class="why-reasons">
           <div class="why-reason">
             <div class="icon-circle">
@@ -1555,62 +1862,62 @@
       <h2 class="section-title">Care That <em>Fits Real Life</em></h2>
     </div>
     <div class="services-grid">
-      <div class="service-card reveal delay-1">
+      <a href="#cta-final" class="service-card reveal delay-1">
         <div class="icon-circle">
           <svg viewBox="0 0 16 16" stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M8 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zM2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
         </div>
         <div class="service-card-title">Personal Care</div>
         <div class="service-card-desc">Help with bathing, dressing, and daily needs</div>
-      </div>
-      <div class="service-card reveal delay-2">
+      </a>
+      <a href="#cta-final" class="service-card reveal delay-2">
         <div class="icon-circle">
           <svg viewBox="0 0 16 16" stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="2" width="10" height="12" rx="1"/><path d="M6 6h4M6 9h4M6 12h2"/></svg>
         </div>
         <div class="service-card-title">Medication Support</div>
         <div class="service-card-desc">Stay on track with reminders and routines</div>
-      </div>
-      <div class="service-card reveal delay-3">
+      </a>
+      <a href="#cta-final" class="service-card reveal delay-3">
         <div class="icon-circle">
           <svg viewBox="0 0 16 16" stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M8 14s-6-3.5-6-8a6 6 0 0 1 12 0c0 4.5-6 8-6 8z"/></svg>
         </div>
         <div class="service-card-title">Companionship</div>
         <div class="service-card-desc">Reduce loneliness and stay engaged</div>
-      </div>
-      <div class="service-card reveal delay-4">
+      </a>
+      <a href="#cta-final" class="service-card reveal delay-4">
         <div class="icon-circle">
           <svg viewBox="0 0 16 16" stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M8 2v12M4 6l4-4 4 4"/></svg>
         </div>
         <div class="service-card-title">Post-Surgery Support</div>
         <div class="service-card-desc">Extra help during recovery at home</div>
-      </div>
-      <div class="service-card reveal delay-1">
+      </a>
+      <a href="#cta-final" class="service-card reveal delay-1">
         <div class="icon-circle">
           <svg viewBox="0 0 16 16" stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
         </div>
         <div class="service-card-title">Chronic Condition Support</div>
         <div class="service-card-desc">Daily help managing ongoing needs</div>
-      </div>
-      <div class="service-card reveal delay-2">
+      </a>
+      <a href="#cta-final" class="service-card reveal delay-2">
         <div class="icon-circle">
           <svg viewBox="0 0 16 16" stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M2 8h4l2-5 2 10 2-5h2"/></svg>
         </div>
         <div class="service-card-title">Respite Care</div>
         <div class="service-card-desc">Take a break while we step in</div>
-      </div>
-      <div class="service-card reveal delay-3">
+      </a>
+      <a href="#cta-final" class="service-card reveal delay-3">
         <div class="icon-circle">
           <svg viewBox="0 0 16 16" stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M3 3h10v8H3zM6 11v2M10 11v2M4 13h8"/></svg>
         </div>
         <div class="service-card-title">24/7 Live-In Care</div>
         <div class="service-card-desc">Full-time support when needed most</div>
-      </div>
-      <div class="service-card reveal delay-4">
+      </a>
+      <a href="#cta-final" class="service-card reveal delay-4">
         <div class="icon-circle">
           <svg viewBox="0 0 16 16" stroke="white" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M8 2l1.5 3 3.5.5-2.5 2.5.5 3.5L8 10 5 11.5l.5-3.5L3 5.5l3.5-.5z"/></svg>
         </div>
         <div class="service-card-title">Veterans Care</div>
         <div class="service-card-desc">Support for veterans and their families</div>
-      </div>
+      </a>
     </div>
     <div class="services-cta reveal delay-2">
       <a href="#cta-final" class="btn btn-primary">Find The Right Care For Your Parent</a>
@@ -1632,11 +1939,20 @@
         <p>You don't need to commit to anything. You just need to understand:</p>
       </div>
 
-      <ul class="objection-bullets">
-        <li>What your options are</li>
-        <li>What level of care makes sense</li>
-        <li>What to do next</li>
-      </ul>
+      <div class="bento-grid">
+        <div class="bento-card">
+          <img class="bento-card-img" src="/ML-Project.html/images/Options-2_Web.webp" alt="" loading="lazy" />
+          <h3 class="bento-card-text">What your options are</h3>
+        </div>
+        <div class="bento-card">
+          <img class="bento-card-img" src="/ML-Project.html/images/WhatLevel_Web.webp" alt="" loading="lazy" />
+          <h3 class="bento-card-text">What level of care makes sense</h3>
+        </div>
+        <div class="bento-card">
+          <img class="bento-card-img" src="/ML-Project.html/images/WhatNext_Web.webp" alt="" loading="lazy" />
+          <h3 class="bento-card-text">What to do next</h3>
+        </div>
+      </div>
 
       <p class="objection-bold">
         You don't need all the answers.<br/><em>You just need a starting point.</em>
@@ -1682,25 +1998,30 @@
 <!-- ─── SECTION 10: PROCESS ─── -->
 <section id="process">
   <div class="container">
-    <div class="reveal" style="max-width:480px;">
-      <p class="section-eyebrow">Getting Started</p>
-      <h2 class="section-title">What <em>Happens Next</em></h2>
-    </div>
-    <div class="process-steps">
-      <div class="process-step reveal delay-1">
-        <div class="process-step-number">01</div>
-        <div class="process-step-title">Book a free consultation</div>
-        <div class="process-step-desc">Tell us what's going on. No pressure, no commitment — just a conversation.</div>
+    <div class="process-inner reveal">
+      <video class="process-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="https://res.cloudinary.com/dtjzevblt/video/upload/v1778696623/WhatHappensNext_cdexz8.mp4" type="video/mp4" />
+      </video>
+      <div class="process-header">
+        <p class="section-eyebrow">Getting Started</p>
+        <h2 class="section-title">What <em>Happens Next</em></h2>
       </div>
-      <div class="process-step reveal delay-2">
-        <div class="process-step-number">02</div>
-        <div class="process-step-title">Get a clear plan</div>
-        <div class="process-step-desc">We help you understand your options and what level of care makes sense.</div>
-      </div>
-      <div class="process-step reveal delay-3">
-        <div class="process-step-number">03</div>
-        <div class="process-step-title">Move forward with confidence</div>
-        <div class="process-step-desc">Start care when you're ready — on your timeline, your terms.</div>
+      <div class="process-steps">
+        <div class="process-step reveal delay-1">
+          <div class="process-step-number">01</div>
+          <div class="process-step-title">Book a free consultation</div>
+          <div class="process-step-desc">Tell us what's going on. No pressure, no commitment — just a conversation.</div>
+        </div>
+        <div class="process-step reveal delay-2">
+          <div class="process-step-number">02</div>
+          <div class="process-step-title">Get a clear plan</div>
+          <div class="process-step-desc">We help you understand your options and what level of care makes sense.</div>
+        </div>
+        <div class="process-step reveal delay-3">
+          <div class="process-step-number">03</div>
+          <div class="process-step-title">Move forward with confidence</div>
+          <div class="process-step-desc">Start care when you're ready — on your timeline, your terms.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1875,24 +2196,11 @@
             <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Resources</div>
-          <ul>
-            <li><a href="#">Caregiver Guide</a></li>
-            <li><a href="#">Veterans Benefits</a></li>
-            <li><a href="#">Family Resources</a></li>
-          </ul>
-        </div>
       </div>
       <div class="footer-contact">
-        <div class="footer-col-title">Contact</div>
-        <a href="tel:+12135550000">(213) 555-0000</a>
-        <a href="/cdn-cgi/l/email-protection#0d65686161624d606c6369616e6c7f68236e6260"><span class="__cf_email__" data-cfemail="ef878a838380af828e818b838c8e9d8ac18c8082">[email&#160;protected]</span></a>
-        <div style="margin-top:16px;">
-          <a href="#cta-final" class="btn btn-primary btn-sm">
-            Book Free Consultation
-          </a>
-        </div>
+        <a href="#cta-final" class="btn btn-primary btn-sm">
+          Book Free Consultation
+        </a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -2000,6 +2308,205 @@
       nav.style.boxShadow = 'none';
     }
   });
+
+  // ─── HERO EASY-FORM: TAP-TO-HIGHLIGHT (touch devices) ───
+  (function () {
+    if (!window.matchMedia('(hover: none)').matches) return;
+    const form = document.querySelector('.hero-easy-form');
+    if (!form) return;
+    document.addEventListener('pointerdown', (e) => {
+      if (form.contains(e.target)) form.classList.add('is-tapped');
+      else form.classList.remove('is-tapped');
+    }, { passive: true });
+  })();
+
+  // ─── NAV AUTO-HIDE NEAR SECTION CTAS ───
+  (function () {
+    const nav = document.querySelector('nav');
+    if (!nav || !('IntersectionObserver' in window)) return;
+
+    const mobileMq = window.matchMedia('(max-width: 900px)');
+    const ctas = Array.from(document.querySelectorAll('.btn.btn-primary:not(.nav-cta)'));
+    if (!ctas.length) return;
+
+    const intersecting = new Set();
+    let observer = null;
+
+    function applyState() {
+      if (intersecting.size > 0) nav.classList.add('is-hidden');
+      else nav.classList.remove('is-hidden');
+    }
+
+    function build() {
+      if (observer) { observer.disconnect(); observer = null; }
+      intersecting.clear();
+      nav.classList.remove('is-hidden');
+      if (mobileMq.matches) return;
+
+      const navHeight = nav.offsetHeight;
+      const bandTop = navHeight + 120;
+      const bottomInset = Math.max(0, window.innerHeight - bandTop);
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) intersecting.add(entry.target);
+          else intersecting.delete(entry.target);
+        });
+        applyState();
+      }, {
+        rootMargin: `0px 0px -${bottomInset}px 0px`,
+        threshold: 0,
+      });
+
+      ctas.forEach((cta) => observer.observe(cta));
+    }
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(build, 150);
+    });
+
+    build();
+  })();
+
+  // ─── WHY M&L IMAGE SLIDER ───
+  (function () {
+    const slider = document.querySelector('.why-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.why-slide');
+    const dots = slider.querySelectorAll('.why-slider-dot');
+    if (slides.length < 2) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const INTERVAL = 5500;
+    let idx = 0;
+    let timer = null;
+
+    function show(n) {
+      idx = ((n % slides.length) + slides.length) % slides.length;
+      slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    }
+    function start() { if (!reduceMotion) timer = setInterval(() => show(idx + 1), INTERVAL); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => { show(i); stop(); start(); });
+    });
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+
+    start();
+  })();
+
+  // ─── WHEEL-INTERCEPT SECTION ADVANCE ───
+  (function () {
+    if (window.matchMedia('(max-width: 900px)').matches) return;
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    if (!sections.length) return;
+
+    const NAV_OFFSET = 64;
+    const EDGE_TOLERANCE = 12;
+    const ANIM_DURATION = 1100;
+    const COOLDOWN_MS = 240;
+    const FLICK_PAUSE_MS = 140;
+
+    let isAnimating = false;
+    let cooldownUntil = 0;
+    let lastWheelTime = 0;
+
+    function isBusy() { return isAnimating || Date.now() < cooldownUntil; }
+
+    function currentIndex() {
+      const scrollY = window.scrollY;
+      let idx = 0;
+      for (let i = 0; i < sections.length; i++) {
+        if (sections[i].offsetTop - NAV_OFFSET - 4 <= scrollY) idx = i;
+        else break;
+      }
+      return idx;
+    }
+
+    function smoothScrollTo(targetY) {
+      isAnimating = true;
+      const startY = window.scrollY;
+      const delta = targetY - startY;
+      const startTime = performance.now();
+      function step(now) {
+        const t = Math.min(1, (now - startTime) / ANIM_DURATION);
+        const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        window.scrollTo({ top: startY + delta * eased, behavior: 'instant' });
+        if (t < 1) {
+          requestAnimationFrame(step);
+        } else {
+          isAnimating = false;
+          cooldownUntil = Date.now() + COOLDOWN_MS;
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    function goToSection(idx) {
+      if (idx < 0 || idx >= sections.length) return;
+      const targetY = Math.max(0, sections[idx].offsetTop - NAV_OFFSET);
+      smoothScrollTo(targetY);
+    }
+
+    function onWheel(e) {
+      if (isBusy()) { e.preventDefault(); return; }
+      const dy = e.deltaY;
+      if (Math.abs(dy) < 4) return;
+
+      const now = Date.now();
+      const isFreshFlick = (now - lastWheelTime) > FLICK_PAUSE_MS;
+      lastWheelTime = now;
+
+      const idx = currentIndex();
+      const section = sections[idx];
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+      const viewTop = window.scrollY + NAV_OFFSET;
+      const viewBottom = window.scrollY + window.innerHeight;
+      const goingDown = dy > 0;
+
+      // Last section + going down → let user reach the footer naturally
+      if (goingDown && idx >= sections.length - 1 && viewBottom >= sectionBottom - EDGE_TOLERANCE) {
+        return;
+      }
+
+      // Tall sections: free internal scroll. Only advance on a fresh flick at the edge.
+      const sectionTallerThanView = section.offsetHeight > (window.innerHeight - NAV_OFFSET);
+      if (sectionTallerThanView) {
+        const atBottomEdge = goingDown && viewBottom >= sectionBottom - EDGE_TOLERANCE;
+        const atTopEdge = !goingDown && viewTop <= sectionTop + EDGE_TOLERANCE;
+        if (!atBottomEdge && !atTopEdge) return;          // mid-section → free scroll
+        if (!isFreshFlick) return;                         // at edge but mid-trackpad-inertia → don't advance
+      }
+
+      e.preventDefault();
+      goToSection(goingDown ? idx + 1 : idx - 1);
+    }
+
+    window.addEventListener('wheel', onWheel, { passive: false });
+
+    window.addEventListener('keydown', (e) => {
+      if (isBusy()) return;
+      if (e.target.matches('input, textarea, select, [contenteditable]')) return;
+
+      const idx = currentIndex();
+      let nextIdx = null;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') nextIdx = idx + 1;
+      else if (e.key === 'ArrowUp' || e.key === 'PageUp') nextIdx = idx - 1;
+      else if (e.key === 'Home') nextIdx = 0;
+      else if (e.key === 'End') nextIdx = sections.length - 1;
+      else return;
+
+      if (nextIdx === null || nextIdx < 0 || nextIdx >= sections.length) return;
+      e.preventDefault();
+      goToSection(nextIdx);
+    });
+  })();
 </script>
 
 <!-- ─── TWEAKS ─── -->
